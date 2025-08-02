@@ -95,3 +95,71 @@ int main() {
 
     return 0;
 }
+
+/* Template 을 사용해서 중복 코드를 줄임*/
+/*
+#include <iostream>
+#include <vector>
+#include <string>
+#include <algorithm> // 표준 함수 std::max_element를 사용하기 위해 필요
+#include <stdexcept> // 표준 예외 std::runtime_error를 사용하기 위해 필요
+
+// [템플릿 함수: 모든 종류의 '벡터'를 처리]
+// T는 컴파일러가 알아서 double 또는 std::string 등으로 바꿔주는 타입 이름입니다.
+template <typename T>
+T max_of(const std::vector<T>& data) {
+    // 1. 데이터가 비어 있는지 확인합니다.
+    if (data.empty()) {
+        throw std::runtime_error("오류: 벡터가 비어 있어 최댓값을 찾을 수 없습니다.");
+    }
+
+    // 2. std::max_element를 사용해 최댓값을 찾습니다.
+    // 이 함수는 for 루프를 도는 것과 같은 일을 하지만 더 간결하고 최적화되어 있습니다.
+    // 함수는 값 자체가 아닌 값을 가리키는 '위치(반복자)'를 반환하므로,
+    // 실제 값을 얻기 위해 앞에 별(*)을 붙여줍니다.
+    return *std::max_element(data.begin(), data.end());
+}
+
+// [오버로딩 함수: '문자열'을 특별히 처리]
+// 문자열에서 가장 큰 '문자(char)'를 찾습니다.
+char max_of(const std::string& text) {
+    if (text.empty()) {
+        throw std::runtime_error("오류: 문자열이 비어 있어 최댓값을 찾을 수 없습니다.");
+    }
+    
+    // std::string도 일종의 문자(char) 컨테이너이므로,
+    // std::max_element를 똑같이 사용할 수 있습니다.
+    return *std::max_element(text.begin(), text.end());
+}
+
+int main() {
+    // 1. 숫자 데이터 (Python의 튜플에 해당)
+    std::vector<double> t = {4.0, 7.0, 5.6, 2.0, 3.14, 1.0};
+
+    // 2. 문자열 데이터
+    std::string s = "string";
+
+    // 3. 문자열 리스트 데이터
+    std::vector<std::string> a = {"DTS", "AAC", "FLAC", "XYZ"};
+
+    try {
+        // max_of(t) 호출 시: t는 std::vector<double> 타입이므로,
+        // 컴파일러는 '템플릿 함수'를 선택하고 T를 double로 결정합니다.
+        std::cout << "숫자 벡터의 최댓값은 " << max_of(t) << "입니다." << std::endl;
+
+        // max_of(s) 호출 시: s는 std::string 타입이므로,
+        // 컴파일러는 이 타입에 완벽히 일치하는 '오버로딩 함수'를 선택합니다.
+        std::cout << "문자열 \"" << s << "\"에서 가장 큰 문자는 '" << max_of(s) << "'입니다." << std::endl;
+        
+        // max_of(a) 호출 시: a는 std::vector<std::string> 타입이므로,
+        // 컴파일러는 다시 '템플릿 함수'를 선택하고 T를 std::string으로 결정합니다.
+        std::cout << "문자열 벡터의 최댓값은 \"" << max_of(a) << "\"입니다." << std::endl;
+    }
+    catch (const std::runtime_error& e) {
+        // 함수에서 throw된 오류를 여기서 잡아 출력합니다.
+        std::cerr << "프로그램에 문제가 발생했습니다: " << e.what() << std::endl;
+    }
+
+    return 0;
+}
+*/
