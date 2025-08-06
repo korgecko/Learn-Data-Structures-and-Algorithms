@@ -111,3 +111,78 @@ class BinarySearchTree:
             else:
                 successor_parent.right = successor.left
         return True
+
+# ================================================================
+# remove 메서드 테스트 시작
+# ================================================================
+
+# 트리의 현재 상태를 확인하기 위한 헬퍼 함수
+def print_in_order(node: Node):
+    """중위 순회로 노드를 출력하여 정렬 상태 확인"""
+    if node:
+        print_in_order(node.left)
+        print(f"({node.key}: {node.value})", end=' ')
+        print_in_order(node.right)
+
+# 1. 테스트용 트리 생성
+print("1. 테스트용 이진 검색 트리를 생성합니다.")
+bst = BinarySearchTree()
+nodes_to_add = [
+    (8, '사과'), (3, '귤'), (10, '포도'), (1, '딸기'), (6, '배'),
+    (4, '수박'), (7, '체리'), (14, '복숭아'), (13, '자두')
+]
+for key, value in nodes_to_add:
+    bst.add(key, value)
+
+print("\n[초기 트리 상태 (중위 순회)]")
+print_in_order(bst.root)
+print("\n" + "="*50)
+
+# 2. 테스트 케이스 1: 자식이 없는 노드(리프 노드) 삭제 (키: 4)
+print("\n2. [테스트] 자식이 없는 노드(키: 4)를 삭제합니다.")
+print("삭제 전 search(4):", bst.search(4))
+bst.remove(4)
+print("삭제 후 search(4):", bst.search(4))
+print("[결과 트리 상태]")
+print_in_order(bst.root)
+print("\n" + "="*50)
+
+# 3. 테스트 케이스 2: 자식이 하나 있는 노드 삭제 (키: 14)
+print("\n3. [테스트] 자식이 하나 있는 노드(키: 14)를 삭제합니다.")
+print("삭제 전 search(14):", bst.search(14))
+bst.remove(14)
+print("삭제 후 search(14):", bst.search(14))
+print("-> 부모(10)의 오른쪽 자식이 14의 자식(13)으로 대체되었는지 확인")
+print("[결과 트리 상태]")
+print_in_order(bst.root)
+print("\n" + "="*50)
+
+# 4. 테스트 케이스 3: 자식이 두 개 있는 노드 삭제 (키: 3)
+print("\n4. [테스트] 자식이 두 개 있는 노드(키: 3)를 삭제합니다.")
+print("-> 후계자(왼쪽 서브트리의 최댓값: 1)가 그 자리를 대체합니다.")
+print("삭제 전 search(3):", bst.search(3))
+bst.remove(3)
+print("삭제 후 search(3):", bst.search(3))
+print("-> 3의 자리에 후계자인 1의 데이터가 복사되었고, 원래 1의 자리는 삭제됨")
+print("[결과 트리 상태]")
+print_in_order(bst.root)
+print("\n" + "="*50)
+
+# 5. 테스트 케이스 4: 루트 노드 삭제 (현재 루트: 8)
+print("\n5. [테스트] 루트 노드(키: 8)를 삭제합니다.")
+print("-> 후계자(왼쪽 서브트리의 최댓값: 7)가 루트가 됩니다.")
+print("삭제 전 search(8):", bst.search(8))
+bst.remove(8)
+print("삭제 후 search(8):", bst.search(8))
+print("[결과 트리 상태]")
+print_in_order(bst.root)
+print("\n" + "="*50)
+
+# 6. 테스트 케이스 5: 존재하지 않는 노드 삭제 시도 (키: 99)
+print("\n6. [테스트] 존재하지 않는 노드(키: 99)를 삭제 시도합니다.")
+result = bst.remove(99)
+print(f"remove(99) 실행 결과: {result}")
+print("-> 트리에 아무런 변화가 없어야 합니다.")
+print("[결과 트리 상태]")
+print_in_order(bst.root)
+print("\n" + "="*50)
