@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class NbyKBecomeOne {
+public class GreedyNbyKBecomeOne {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
