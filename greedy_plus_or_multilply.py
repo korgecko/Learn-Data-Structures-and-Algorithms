@@ -21,5 +21,3 @@ for i in range(1, len(data)):
         result *= num
 
 print(result)
-
-print(result)
