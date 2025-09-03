@@ -30,6 +30,9 @@ visited = [False] * 9
 #[False, False, False, False, False, False, False, False, False]
 #이렇게 9개의 False 값이 있는 리스트가 만들어집니다.
 
+# 왜 크기를 9로 했나? (0~8) 
+# 리스트의 인덱스와 노드 번호를 맞추기 위해 0번 인덱스는 사용하지 않고 1~8을 씁니다.
+# 0번은 비워두거나 그냥 안 쓰는 경우가 많아요.
 
 # 1번 노드에서 시작하여 DFS 수행
 depth_first_search_recursive(graph, 1, visited)
