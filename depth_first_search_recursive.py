@@ -27,6 +27,9 @@ graph = [
 # 각 노드가 방문된 정보를 저장하는 리스트
 # 인덱스와 노드 번호를 맞추기 위해 크기를 9로 설정 (0~8)
 visited = [False] * 9
+#[False, False, False, False, False, False, False, False, False]
+#이렇게 9개의 False 값이 있는 리스트가 만들어집니다.
+
 
 # 1번 노드에서 시작하여 DFS 수행
 depth_first_search_recursive(graph, 1, visited)
