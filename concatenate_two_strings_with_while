@@ -1,0 +1,10 @@
+def append_string_with_while(s1, s2):
+    index = 0
+    while index < len(s2):
+        s1 = s1 + s2[index]
+        index = index + 1
+    return s1
+
+s1 = "learn algorithm"
+s2 = " and data structure"
+print(append_string_with_while(s1, s2))
